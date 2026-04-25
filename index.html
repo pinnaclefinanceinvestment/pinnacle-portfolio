@@ -91,5 +91,33 @@
   © 2026 Pinnacle Finance Platform. All rights reserved.
 </footer>
 
-</body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script>
+  const supabaseUrl = "PASTE_PROJECT_URL_HERE";
+  const supabaseKey = "PASTE_ANON_KEY_HERE";
+
+  const client = supabase.createClient(supabaseUrl, supabaseKey);
+
+  async function signUp() {
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    let { data, error } = await client.auth.signUp({ email, password });
+
+    alert(error ? error.message : "Check your email to confirm signup");
+  }
+
+  async function login() {
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    let { data, error } = await client.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    alert(error ? error.message : "Login successful!");
+  }
+</script></body>
 </html>
